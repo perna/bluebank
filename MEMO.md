@@ -1,0 +1,1 @@
+Iniciar o desenvolvimento pelo Front-End para ter visão das informações a serem disponibilizadas pela API;
