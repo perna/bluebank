@@ -1,27 +1,15 @@
 angular.module('bluebank',['ngRoute'])
-    .config(['$routeProvider', function($routeProvider){
-
+    .config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider){
+        $locationProvider.hashPrefix('');
         $routeProvider
             .when('/', {
                 templateUrl: '/partials/account-details.html'
             })
-            .when('/search', {
-                templateUrl: 'static/partials/search.html',
-                controller: 'SearchController'
+            .when('/transfer', {
+                templateUrl: '/partials/bank-transfer.html',
             })
-            .when('/add-podcast', {
-                templateUrl: 'static/partials/add_feed.html',
-                controller: 'FeedController'
-            })
-            .when('/list-podcasts', {
-                templateUrl: 'static/partials/list_podcasts.html',
-                controller: 'PodcastController'
-            })
-            .when('/about', {
-                templateUrl: 'static/partials/about.html'
-            })
-            .when('/contact', {
-                templateUrl: 'static/partials/contact.html'
+            .when('/history', {
+                templateUrl: '/partials/transaction-history.html',
             })
             .otherwise({
                 redirectTo: '/'
