@@ -1,9 +1,10 @@
-angular.module('bluebank',['ngRoute'])
+angular.module('bluebank',['ngRoute','angularMoment'])
     .config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider){
         $locationProvider.hashPrefix('');
         $routeProvider
-            .when('/', {
-                templateUrl: '/partials/account-details.html'
+            .when('/user/:id', {
+                templateUrl: '/partials/account-details.html',
+                controller: 'AccountController'
             })
             .when('/transfer', {
                 templateUrl: '/partials/bank-transfer.html',
@@ -12,6 +13,9 @@ angular.module('bluebank',['ngRoute'])
                 templateUrl: '/partials/transaction-history.html',
             })
             .otherwise({
-                redirectTo: '/'
+                redirectTo: '/:id'
             });
-    }]);
+    }])
+    .run(function(amMoment) {
+        amMoment.changeLocale('pt-br');
+    });
