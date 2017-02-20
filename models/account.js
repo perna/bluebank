@@ -3,7 +3,7 @@
 module.exports = function(sequelize, DataTypes) {
   var Account = sequelize.define('Account', {
     balance: DataTypes.DECIMAL(10,2),
-    number: DataTypes.INTEGER(9).UNSIGNED.ZEROFILL
+    number: DataTypes.STRING(9)
   }, {
       classMethods: {
         associate: function(models) {

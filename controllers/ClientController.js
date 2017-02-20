@@ -2,6 +2,7 @@
 
 const Client = require('../models').Client;
 const Account = require('../models').Account;
+const iscpf = require('iscpf');
 
 exports.list = (req, res) => {
 
@@ -17,6 +18,10 @@ exports.list = (req, res) => {
 
 
 exports.create = (req,res) => {
+
+	if(!iscpf(req.body.cpf))
+		res.status(500).json({error: 'cpf invalido'});
+
 	Client.create({cpf: req.body.cpf})
 		.then(function (newClient) {
         	res.status(200).json(newClient);

@@ -13,8 +13,7 @@ module.exports = {
       },
       number: {
         allowNull: false,
-        autoIncrement: true,
-        type: Sequelize.INTEGER(9).UNSIGNED.ZEROFILL
+        type: Sequelize.STRING(9)
       },
       created_at: {
         allowNull: false,
