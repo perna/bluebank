@@ -851,6 +851,10 @@ isarray@1.0.0, isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
 
+iscpf@^1.0.6:
+  version "1.0.6"
+  resolved "http://registry.npmjs.org/iscpf/-/iscpf-1.0.6.tgz#f90ba41ace81485d606e92fe9daa34bfcac80d81"
+
 isexe@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-1.1.2.tgz#36f3e22e60750920f5e7241a476a8c6a42275ad0"
@@ -1918,3 +1922,7 @@ yargs@~3.10.0:
     cliui "^2.1.0"
     decamelize "^1.0.0"
     window-size "0.1.0"
+
+zerofill@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/zerofill/-/zerofill-0.1.0.tgz#b349e754c627c11340c4af389a4f9efb006342cd"

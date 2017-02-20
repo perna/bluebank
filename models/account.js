@@ -12,7 +12,13 @@ module.exports = function(sequelize, DataTypes) {
       paranoid: true,
       freezeTableName: true,
       tableName: 'account',
-      underscored: true
+      underscored: true,
+      indexes:[
+        {
+          unique: true,
+          fields:['number']
+        }
+      ]
     }
   });
   return Account;

@@ -1,6 +1,7 @@
 'use strict';
 
 const Client = require('../models').Client;
+const Account = require('../models').Account;
 
 exports.list = (req, res) => {
 
@@ -27,20 +28,11 @@ exports.create = (req,res) => {
 
 
 exports.find = (req,res) => {
-	Client.findById(req.params.id)
+	Client.findById(req.params.id, { include: Account })
 		.then(function (client) {
         	res.status(200).json(client);
       	})
       	.catch(function (error){
         	res.status(500).json(error);
     });
-};
-
-
-exports.findByAccount = (req, res) => {
-	Client.findOne({ where: { number: req.body.number, agency_id: req.body.agency_id} })
-		.then(function(client) {
- 			console.log(client)
-    		console.log(person.name)
-  	});
 };
