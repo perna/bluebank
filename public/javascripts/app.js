@@ -1,5 +1,9 @@
 angular.module('bluebank',['ngRoute','angularMoment','ngStorage'])
-    .config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider){
+    .config(['$routeProvider','$locationProvider', '$compileProvider',
+     function($routeProvider, $locationProvider,$compileProvider){
+
+        $compileProvider.debugInfoEnabled(false);
+
         $locationProvider.hashPrefix('');
         $routeProvider
             .when('/user/:id', {
