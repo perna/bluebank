@@ -1,4 +1,4 @@
-angular.module('bluebank',['ngRoute','angularMoment'])
+angular.module('bluebank',['ngRoute','angularMoment','ngStorage'])
     .config(['$routeProvider','$locationProvider', function($routeProvider, $locationProvider){
         $locationProvider.hashPrefix('');
         $routeProvider
@@ -8,9 +8,11 @@ angular.module('bluebank',['ngRoute','angularMoment'])
             })
             .when('/transfer', {
                 templateUrl: '/partials/bank-transfer.html',
+                controller: 'TransferController'
             })
             .when('/history', {
                 templateUrl: '/partials/transaction-history.html',
+                controller: 'HistoryController'
             })
             .otherwise({
                 redirectTo: '/:id'

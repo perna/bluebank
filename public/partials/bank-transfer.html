@@ -1,22 +1,25 @@
 <div class="panel panel-primary">
 	<div class="panel-heading">
-    	<h3 class="panel-title">Conta: {{ }} - Realizar Transferencia</h3>
+    	<h3 class="panel-title">Realizar Transferencia</h3>
   	</div>
   <div class="panel-body">
-  	<form class="form">
-		<div class="form-group">
+  	<div class="alert" ng-show="showMessage" ng-class="typeMessage ? 'alert-success' : 'alert-danger'">
+		{{message}}
+	</div>
+  	<form class="form" novalidate name="transferForm" ng-submit="doTransfer()">
+		<div class="form-group" ng-class="{ 'has-error' : transferForm.agency.$invalid && !transferForm.agency.$pristine }" required>
 			<label for="agency">Agencia</label>
-    		<input type="text" class="form-control" id="agency" placeholder="">
+    		<input type="text" class="form-control" id="agency" name="agency" ng-model="transfer.agency" required placeholder="0001">
 		</div>
-		<div class="form-group">
-			<label for="agency">Conta</label>
-    		<input type="text" class="form-control" id="agency" placeholder="">
+		<div class="form-group" ng-class="{ 'has-error' : transferForm.account.$invalid && !transferForm.account_sender.$pristine }">
+			<label for="account">Conta</label>
+    		<input type="text" class="form-control" id="account" name="account" ng-model="transfer.account" required placeholder="0000000002">
 		</div>
-		<div class="form-group">
-			<label for="agency">Valor</label>
-    		<input type="text" class="form-control" id="agency" placeholder="">
+		<div class="form-group" ng-class="{'has-error':transferForm.value.$invalid && !transferForm.value_transfer.$pristine }">
+			<label for="valueTransfer">Valor</label>
+    		<input type="text" class="form-control" id="valueTransfer" name="value" ng-model="transfer.value" required placeholder="100.00">
 		</div>
-		<button class="btn btn-success" type="button">Efetuar transferencia</button>
+		<button class="btn btn-success" type="submit" ng-disabled="!transferForm.$valid">Efetuar transferencia</button>
   	</form>
   </div>
 </div>

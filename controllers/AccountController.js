@@ -71,7 +71,8 @@ exports.doTransfer = (req, res) => {
                                     Transactional.build({
                                         account_emmiter: emmiterAccount.number,
                                         account_sender: account.number,
-                                        value: value 
+                                        value: value,
+                                        type_transaction: 'transfêrencia' 
                                     })
                                     .save()
                                     .then(function(transactional) {
