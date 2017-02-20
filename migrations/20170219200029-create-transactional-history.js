@@ -8,7 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      type: {
+      type_transaction: {
         type: Sequelize.STRING
       },
       value: {

@@ -1,9 +1,10 @@
 'use strict';
 
-const Account = require('../models').Account;
-const Client = require('../models').Client;
-const Agency = require('../models').Agency;
-const zerofill = require('zerofill');
+const Account       = require('../models').Account;
+const Client        = require('../models').Client;
+const Agency        = require('../models').Agency;
+const Transactional = require('../models').Transactional_History;
+const zerofill      = require('zerofill');
 
 
 exports.list = (req, res) => {
@@ -51,9 +52,10 @@ exports.doTransfer = (req, res) => {
 
     Account.findOne({ where: {number: receiving_account}})
         .then(function(account){
+
             Client.findById(emmiter_id, {include: Account})
                 .then(function(emmiter){
-                        console.log(emmiter);
+                        
                         Account.findOne({ where: {number: emmiter.Accounts[0].number}})
                             .then(function(emmiterAccount) {
                                 let balance =  parseFloat(emmiterAccount.balance); 
@@ -65,8 +67,20 @@ exports.doTransfer = (req, res) => {
                                     emmiterAccount.balance = parseFloat(emmiterAccount.balance) - value;
                                     account.save();
                                     emmiterAccount.save();
-                                    message = 'transfêrencia efetuada com  sucesso';
-                                    res.status(200).json({message: message});
+
+                                    Transactional.build({
+                                        account_emmiter: emmiterAccount.number,
+                                        account_sender: account.number,
+                                        value: value 
+                                    })
+                                    .save()
+                                    .then(function(transactional) {
+                                        message = 'transfêrencia efetuada com  sucesso';
+                                        res.status(200).json({message: message});          
+                                    })
+                                    .catch(function(error) {
+                                        res.status(500).json(error);
+                                    });  
                                 }            
                             })  
                             .catch(function (error){
